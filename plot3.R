@@ -15,6 +15,10 @@ myData2$DateTime <- as.POSIXct(datetime)
 
 ## Plot3
 ## use the "with()" function.  Add lines for second and third sub_metering
+## To prevent the legend from being cut off on the right, open a PNG graphic device, do plotting, then close the PNG device.
+## Open PNG file graphic device
+png(filename = "plot3.png", width = 480, height = 480)
+
 with(myData2, {
         plot(Sub_metering_1~DateTime, type = "l", ylab = "Energy sub metering", xlab = "")
         lines(Sub_metering_2~DateTime, col = "red")
@@ -22,7 +26,8 @@ with(myData2, {
 })
 legend("topright", col = c("black", "red", "blue"), lty = 1, lwd = 2, legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
 
-
-## Save plot to a PNG device
-dev.copy(png, file = "plot3.png", width = 480, height = 480)
+## The following copy didn't keep the entire legend.  Left this in for reference only.
+##dev.copy(png, file = "plot3b.png", width = 480, height = 480)
+## 
+## Close the PNG graphic device
 dev.off()
