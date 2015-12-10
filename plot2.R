@@ -12,7 +12,10 @@ rm(myData) ## Clear memory
 datetime <- paste(as.Date(myData2$Date), myData2$Time)
 myData2$DateTime <- as.POSIXct(datetime)
 
-## Plot1
-hist(myData2$Global_active_power, main = "Global Active Power", xlab = "Global Active Power (kilowatts)", ylab = "Frequency", col = "red")
+## Plot2
+plot(myData2$DateTime, myData2$Global_active_power, type = "n", ylab = "Global Active Power (kilowatts)", xlab = "")
+lines(myData2$DateTime, myData2$Global_active_power)
 
 ## Save plot to a PNG device
+dev.copy(png, file = "plot2.png", width = 480, height = 480)
+dev.off()
